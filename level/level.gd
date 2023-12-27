@@ -41,9 +41,13 @@ func _ready():
 
 
 func _process(delta):
-	# exit "Q" button clicked
+	# exit "Q" button pressed
 	if Input.is_action_just_pressed("exit") == true:
 		GameManager.load_main_scene()
+		
+	# reload "R" button pressed
+	if Input.is_action_just_pressed("reload") == true:
+		setup_level()
 		
 	hud.set_moves_label(_total_moves)
 	
