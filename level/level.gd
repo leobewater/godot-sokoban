@@ -39,8 +39,37 @@ func _process(delta):
 	pass
 
 
-func add_layer_tiles(layter_tilers, layer_name: String) -> void:
-	pass
+# get tile coord from TileSet based on layer name
+func get_atlas_coord_for_layer_name(layer_name: String) -> Vector2i:
+	match layer_name:
+		LAYER_KEY_FLOOR:
+			return Vector2i(randi_range(3,8), 0)
+		LAYER_KEY_WALLS:
+			return Vector2i(2,0)
+		LAYER_KEY_TARGETS:
+			return Vector2i(9,0)
+		LAYER_KEY_TARGET_BOXES:
+			return Vector2i(0,0)
+		LAYER_KEY_BOXES:
+			return Vector2i(1,0)
+	
+	return Vector2i.ZERO
+
+
+func add_tile(tile_coord: Dictionary, layer_name: String) -> void:
+	var layer_number = LAYER_MAP[layer_name]
+	# get coord from the json tile data
+	var coord_vec: Vector2i = Vector2i(tile_coord.x, tile_coord.y)
+	# get the tile from TileSet
+	var atlas_vec = get_atlas_coord_for_layer_name(layer_name)
+	
+	tile_map.set_cell(layer_number, coord_vec, SOURCE_ID, atlas_vec)
+
+
+func add_layer_tiles(layer_tiles, layer_name: String) -> void:
+	# loop thru each tile from the level's layer
+	for tile_coord in layer_tiles:
+		add_tile(tile_coord.coord, layer_name)
 
 
 func setup_level() -> void:
@@ -49,5 +78,6 @@ func setup_level() -> void:
 	var level_tiles = level_data.tiles # "tiles" is from json key
 	var player_start = level_data.player_start
 	
+	# loop thru each layer from the json level data
 	for layer_name in LAYER_MAP.keys():
 		add_layer_tiles(level_tiles[layer_name], layer_name)
