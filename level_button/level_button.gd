@@ -1,15 +1,26 @@
 extends NinePatchRect
 
 
-# Called when the node enters the scene tree for the first time.
+const GREEN_TEXTURE = preload("res://assets/green_panel.png")
+
+
+var _level_number: String = "99"
+
+
 func _ready():
 	pass # Replace with function body.
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
 
 
+func set_leve_number(level_number: String) -> void:
+	_level_number = level_number
+
+
 func _on_gui_input(event: InputEvent):
-	pass # Replace with function body.
+	if event.is_action_pressed("select") == true:
+		# show green background when level button is selected/clicked
+		texture = GREEN_TEXTURE
+		print("Selected")
