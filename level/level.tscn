@@ -1,3 +1,17 @@
-[gd_scene format=3 uid="uid://rfbb4hsyolry"]
+[gd_scene load_steps=2 format=3 uid="uid://rfbb4hsyolry"]
+
+[sub_resource type="TileSet" id="TileSet_nyerl"]
+tile_size = Vector2i(32, 32)
 
 [node name="Level" type="Node2D"]
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_nyerl")
+format = 2
+layer_0/name = "Floor"
+layer_1/name = "Walls"
+layer_1/tile_data = PackedInt32Array()
+layer_2/name = "Targets"
+layer_2/tile_data = PackedInt32Array()
+layer_3/name = "Boxes"
+layer_3/tile_data = PackedInt32Array()
