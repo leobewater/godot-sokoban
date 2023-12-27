@@ -14,6 +14,10 @@ config/name="godot-sokoban"
 config/features=PackedStringArray("4.2", "Mobile")
 config/icon="res://icon.png"
 
+[autoload]
+
+GameData="*res://singletons/game_data.gd"
+
 [display]
 
 window/size/viewport_width=1024
