@@ -206,7 +206,10 @@ func setup_level() -> void:
 	var level_tiles = level_data.tiles # "tiles" is from json key
 	var player_start = level_data.player_start
 	print("player_start:", player_start)
-		
+	
+	# reset moves number	
+	_total_moves = 0
+	
 	# loop thru each layer from the json level data
 	for layer_name in LAYER_MAP.keys():
 		add_layer_tiles(level_tiles[layer_name], layer_name)
@@ -214,7 +217,7 @@ func setup_level() -> void:
 	# set player's position
 	place_player_on_tile(Vector2i(player_start.x, player_start.y))
 	move_camera()
-	hud.set_level_label(ln)
+	hud.new_game(ln)	
 	game_over_ui.new_game()
 
 

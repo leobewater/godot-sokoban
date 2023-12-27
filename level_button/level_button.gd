@@ -13,6 +13,9 @@ var _level_number: String = "22"
 
 func _ready():
 	level_label.text = _level_number
+	# show check mark after the level already completed
+	if ScoreSync.has_level_score(_level_number) == true:
+		check_mark.show()
 
 
 func _process(delta):
