@@ -11,12 +11,15 @@ config_version=5
 [application]
 
 config/name="godot-sokoban"
+run/main_scene="res://main/main.tscn"
 config/features=PackedStringArray("4.2", "Mobile")
 config/icon="res://icon.png"
 
 [autoload]
 
+SignalManager="*res://singletons/signal_manager.gd"
 GameData="*res://singletons/game_data.gd"
+GameManager="*res://singletons/game_manager.gd"
 
 [display]
 
