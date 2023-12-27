@@ -4,11 +4,15 @@ extends NinePatchRect
 const GREEN_TEXTURE = preload("res://assets/green_panel.png")
 
 
-var _level_number: String = "99"
+@onready var level_label = $LevelLabel
+@onready var check_mark = $CheckMark
+
+
+var _level_number: String = "22"
 
 
 func _ready():
-	pass # Replace with function body.
+	level_label.text = _level_number
 
 
 func _process(delta):
