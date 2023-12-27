@@ -39,6 +39,15 @@ func _process(delta):
 	pass
 
 
+func place_player_on_tile(tile_coord: Vector2i):
+	# get player_start coord from json * tile size
+	var new_pos: Vector2 = Vector2(
+		tile_coord.x * GameData.TILE_SIZE,
+		tile_coord.y * GameData.TILE_SIZE,
+	) + tile_map.global_position
+	player.global_position = new_pos
+
+
 # get tile coord from TileSet based on layer name
 func get_atlas_coord_for_layer_name(layer_name: String) -> Vector2i:
 	match layer_name:
@@ -74,10 +83,13 @@ func add_layer_tiles(layer_tiles, layer_name: String) -> void:
 
 func setup_level() -> void:
 	tile_map.clear()
-	var level_data = GameData.get_data_for_level("12")
+	var level_data = GameData.get_data_for_level("21")
 	var level_tiles = level_data.tiles # "tiles" is from json key
 	var player_start = level_data.player_start
 	
 	# loop thru each layer from the json level data
 	for layer_name in LAYER_MAP.keys():
 		add_layer_tiles(level_tiles[layer_name], layer_name)
+		
+	# set player pos
+	place_player_on_tile(Vector2i(player_start.x, player_start.y))
