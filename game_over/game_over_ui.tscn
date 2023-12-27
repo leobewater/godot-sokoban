@@ -1,5 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://cqj0dqb3bx64f"]
+[gd_scene load_steps=8 format=3 uid="uid://cqj0dqb3bx64f"]
 
+[ext_resource type="Script" path="res://game_over/game_over_ui.gd" id="1_jxgbi"]
 [ext_resource type="Texture2D" uid="uid://bhctwafw01vom" path="res://assets/Purple.png" id="1_kv6ln"]
 [ext_resource type="Texture2D" uid="uid://w5epymetuymv" path="res://assets/panel_beigeLight.png" id="2_semrn"]
 [ext_resource type="LabelSettings" uid="uid://cyij43thk0bqm" path="res://assets/LG_Title_96.tres" id="3_3ou54"]
@@ -26,6 +27,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_jxgbi")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
