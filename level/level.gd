@@ -69,6 +69,19 @@ func place_player_on_tile(tile_coord: Vector2i):
 
 # -- GAME LOGIC
 
+func move_box(box_tile: Vector2i, direction: Vector2i) -> void:
+	var dest = box_tile + direction
+	
+	# remove the current box
+	tile_map.erase_cell(BOX_LAYER, box_tile)
+	
+	# if dest is a target layer show target box otherwise show regular box
+	if dest in tile_map.get_used_cells(TARGET_LAYER):
+		tile_map.set_cell(BOX_LAYER, dest, SOURCE_ID, get_atlas_coord_for_layer_name(LAYER_KEY_TARGET_BOXES))
+	else:
+		tile_map.set_cell(BOX_LAYER, dest, SOURCE_ID, get_atlas_coord_for_layer_name(LAYER_KEY_BOXES))
+
+
 func get_player_tile() -> Vector2i:
 	var player_offset = player.global_position - tile_map.global_position
 	return Vector2i(player_offset / GameData.TILE_SIZE)
@@ -116,6 +129,11 @@ func player_move(direction: Vector2i):
 	
 	if can_move == true:
 		print("can_move")
+		_total_moves += 1
+		if box_seen == true:
+			move_box(new_tile, direction)
+		
+		place_player_on_tile(new_tile)
 		
 	_moving = false
 
