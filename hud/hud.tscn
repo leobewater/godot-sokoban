@@ -1,5 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://gncllvi05m31"]
+[gd_scene load_steps=3 format=3 uid="uid://gncllvi05m31"]
 
+[ext_resource type="Script" path="res://hud/hud.gd" id="1_2c667"]
 [ext_resource type="LabelSettings" uid="uid://cgq8xnywtcgrm" path="res://assets/GM_white_32.tres" id="1_guhyt"]
 
 [node name="HUD" type="Control"]
@@ -9,6 +10,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_2c667")
 
 [node name="MC" type="MarginContainer" parent="."]
 layout_mode = 1

@@ -4,6 +4,7 @@ extends Node2D
 @onready var tile_map = $TileMap
 @onready var player = $Player
 @onready var camera_2d = $Camera2D
+@onready var hud = $CanvasLayer/HUD
 
 
 # value is from the TileSet layers
@@ -39,10 +40,12 @@ func _ready():
 
 
 func _process(delta):
-	# exit
+	# exit "Q" button clicked
 	if Input.is_action_just_pressed("exit") == true:
 		GameManager.load_main_scene()
 		
+	hud.set_moves_label(_total_moves)
+	
 	if _moving:
 		return
 	
@@ -202,6 +205,7 @@ func setup_level() -> void:
 	# set player's position
 	place_player_on_tile(Vector2i(player_start.x, player_start.y))
 	move_camera()
+	hud.set_level_label(ln)
 
 
 func move_camera() -> void:
