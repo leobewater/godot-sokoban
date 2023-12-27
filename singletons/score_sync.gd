@@ -18,6 +18,7 @@ func load_scores() -> void:
 		
 	var file = FileAccess.open(SCORE_FILE, FileAccess.READ)
 	_best_scores = JSON.parse_string(file.get_as_text())
+	print("load_scores(): ", _best_scores)
 
 
 func save_scores() -> void:
