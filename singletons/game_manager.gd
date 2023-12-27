@@ -10,6 +10,10 @@ var _level_selected: String
 
 func _ready():
 	SignalManager.on_level_selected.connect(on_level_selected)
+
+
+func get_level_selected() -> String:
+	return _level_selected
 	
 	
 func on_level_selected(ln: String) -> void:

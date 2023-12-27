@@ -5,6 +5,7 @@ extends Node2D
 @onready var player = $Player
 @onready var camera_2d = $Camera2D
 
+
 # value is from the TileSet layers
 const FLOOR_LAYER = 0
 const WALL_LAYER = 1
@@ -38,6 +39,10 @@ func _ready():
 
 
 func _process(delta):
+	# exit
+	if Input.is_action_just_pressed("exit") == true:
+		GameManager.load_main_scene()
+		
 	if _moving:
 		return
 	
@@ -184,7 +189,8 @@ func add_layer_tiles(layer_tiles, layer_name: String) -> void:
 
 func setup_level() -> void:
 	tile_map.clear()
-	var level_data = GameData.get_data_for_level("1")
+	var ln = GameManager.get_level_selected()
+	var level_data = GameData.get_data_for_level(ln)
 	var level_tiles = level_data.tiles # "tiles" is from json key
 	var player_start = level_data.player_start
 	print("player_start:", player_start)
