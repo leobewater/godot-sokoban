@@ -28,3 +28,4 @@ func _on_gui_input(event: InputEvent):
 		# show green background when level button is selected/clicked
 		texture = GREEN_TEXTURE
 		print("Selected:", _level_number)
+		SignalManager.on_level_selected.emit(_level_number)
