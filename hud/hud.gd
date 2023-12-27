@@ -23,7 +23,3 @@ func set_best_label(best: int) -> void:
 
 func set_level_label(level: String) -> void:
 	level_label.text = level
-
-
-func game_over() -> void:
-	hide()

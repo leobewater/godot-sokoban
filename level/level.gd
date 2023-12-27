@@ -5,6 +5,7 @@ extends Node2D
 @onready var player = $Player
 @onready var camera_2d = $Camera2D
 @onready var hud = $CanvasLayer/HUD
+@onready var game_over_ui = $CanvasLayer/GameOverUi
 
 
 # value is from the TileSet layers
@@ -81,7 +82,10 @@ func check_game_state() -> void:
 	for t in tile_map.get_used_cells(TARGET_LAYER):
 		if cell_is_box(t) == false:
 			return 
+	
 	print("GAME OVER")
+	hud.hide()
+	game_over_ui.show()
 	
 	
 func move_box(box_tile: Vector2i, direction: Vector2i) -> void:
