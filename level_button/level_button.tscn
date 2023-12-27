@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://b8w5ietyhcx67"]
+[gd_scene load_steps=5 format=3 uid="uid://b8w5ietyhcx67"]
 
 [ext_resource type="Texture2D" uid="uid://gbrnho3g7wlx" path="res://assets/blue_panel.png" id="1_celop"]
 [ext_resource type="LabelSettings" uid="uid://cgq8xnywtcgrm" path="res://assets/GM_white_32.tres" id="2_80nj1"]
+[ext_resource type="Script" path="res://level_button/level_button.gd" id="2_bunyg"]
 [ext_resource type="Texture2D" uid="uid://kml5tbw15ti4" path="res://assets/green_checkmark.png" id="3_7ttqi"]
 
 [node name="LevelButton" type="NinePatchRect"]
@@ -10,11 +11,13 @@ offset_right = 40.0
 offset_bottom = 40.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+mouse_filter = 0
 texture = ExtResource("1_celop")
 patch_margin_left = 10
 patch_margin_top = 10
 patch_margin_right = 10
 patch_margin_bottom = 10
+script = ExtResource("2_bunyg")
 
 [node name="LevelLabel" type="Label" parent="."]
 layout_mode = 1
@@ -37,3 +40,5 @@ offset_right = 26.0
 offset_bottom = 25.0
 texture = ExtResource("3_7ttqi")
 stretch_mode = 4
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
