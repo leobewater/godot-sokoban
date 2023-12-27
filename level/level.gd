@@ -30,13 +30,32 @@ const LAYER_MAP = {
 	LAYER_KEY_BOXES: BOX_LAYER
 }
 
+var _moving: bool = false
+var _total_moves: int = 0
 
 func _ready():
 	setup_level()
 
 
 func _process(delta):
-	pass
+	if _moving:
+		return
+	
+	var move_direction = Vector2i.ZERO
+	
+	if Input.is_action_just_pressed("right"):
+		player.flip_h = false
+		move_direction = Vector2i.RIGHT
+	if Input.is_action_just_pressed("left"):
+		player.flip_h = true
+		move_direction = Vector2i.LEFT
+	if Input.is_action_just_pressed("up"):
+		move_direction = Vector2i.UP
+	if Input.is_action_just_pressed("down"):
+		move_direction = Vector2i.DOWN
+	
+	if move_direction != Vector2i.ZERO:
+		player_move(move_direction)
 
 
 func place_player_on_tile(tile_coord: Vector2i):
@@ -47,6 +66,30 @@ func place_player_on_tile(tile_coord: Vector2i):
 	) + tile_map.global_position
 	player.global_position = new_pos
 
+
+# -- GAME LOGIC
+
+func get_player_tile() -> Vector2i:
+	var player_offset = player.global_position - tile_map.global_position
+	return Vector2i(player_offset / GameData.TILE_SIZE)
+	
+	
+func player_move(direction: Vector2i):
+	_moving = true
+	
+	var player_tile = get_player_tile()
+	var new_tile = player_tile + direction
+	
+	print("player_tile:", player_tile)
+	print("new_tile:", new_tile)
+	print("direction:", direction)
+	
+	_moving = false
+
+
+
+
+# -- LEVEL SETUP
 
 # get tile coord from TileSet based on layer name
 func get_atlas_coord_for_layer_name(layer_name: String) -> Vector2i:
@@ -83,10 +126,11 @@ func add_layer_tiles(layer_tiles, layer_name: String) -> void:
 
 func setup_level() -> void:
 	tile_map.clear()
-	var level_data = GameData.get_data_for_level("12")
+	var level_data = GameData.get_data_for_level("1")
 	var level_tiles = level_data.tiles # "tiles" is from json key
 	var player_start = level_data.player_start
-	
+	print("player_start:", player_start)
+		
 	# loop thru each layer from the json level data
 	for layer_name in LAYER_MAP.keys():
 		add_layer_tiles(level_tiles[layer_name], layer_name)
