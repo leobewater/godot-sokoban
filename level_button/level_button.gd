@@ -27,4 +27,4 @@ func _on_gui_input(event: InputEvent):
 	if event.is_action_pressed("select") == true:
 		# show green background when level button is selected/clicked
 		texture = GREEN_TEXTURE
-		print("Selected")
+		print("Selected:", _level_number)
