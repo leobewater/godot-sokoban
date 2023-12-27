@@ -42,3 +42,5 @@ animations = [{
 sprite_frames = SubResource("SpriteFrames_efigf")
 animation = &"idle"
 autoplay = "idle"
+frame = 2
+frame_progress = 0.881776
